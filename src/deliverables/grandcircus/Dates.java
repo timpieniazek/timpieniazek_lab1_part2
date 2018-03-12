@@ -1,6 +1,7 @@
 package deliverables.grandcircus;
 
 import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.Scanner;
 
 /* Tim Pieniazek - Deliverable 2 */
@@ -12,21 +13,24 @@ public class Dates {
 		String secondInput;
 		LocalDate firstDate;
 		LocalDate secondDate;
+		long daysBetween;
 		
 		System.out.println("Let's calculate the difference in time between two dates!");
-		System.out.println("Please enter the first date:");
+		System.out.println("Please enter the first date (YYYY-MM-DD):");
 		firstInput = scnr.nextLine();
 		firstDate = LocalDate.parse(firstInput);
 		
-		System.out.println("Please enter the second date:");
+		System.out.println("Please enter the second date (YYYY-MM-DD):");
 		secondInput = scnr.nextLine();
 		secondDate = LocalDate.parse(secondInput);
 		
-		// TODO: Parse date Strings into LocalDate format
+		// FIXME: Add an exception catch for wrong inputs
+		// TODO: Use LocalDateFormatter to change allow a different input format
 		
-		// TODO: Store year, month, and day variables for the time between date
+		daysBetween = DAYS.between(firstDate, secondDate);
+		// TODO: Break down number of days into months and years
 		
-		// TODO: Add output for the variables
+		System.out.println("There are " + daysBetween + " days between " + firstDate + " and " + secondDate + ".");
 		
 	}
 }
