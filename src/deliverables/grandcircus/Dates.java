@@ -2,9 +2,11 @@ package deliverables.grandcircus;
 
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
+import static java.time.temporal.ChronoUnit.MONTHS;
+import static java.time.temporal.ChronoUnit.YEARS;
 import java.util.Scanner;
 
-/* Tim Pieniazek - Deliverable 2 */
+/* Tim Pieniazek - Deliverable Two */
 
 public class Dates {
 	public static void main(String[] args) {
@@ -13,6 +15,8 @@ public class Dates {
 		String secondInput;
 		LocalDate firstDate;
 		LocalDate secondDate;
+		long yearsBetween;
+		long monthsBetween;
 		long daysBetween;
 		
 		System.out.println("Let's calculate the difference in time between two dates!");
@@ -27,10 +31,13 @@ public class Dates {
 		// FIXME: Add an exception catch for wrong inputs
 		// TODO: Use LocalDateFormatter to change allow a different input format
 		
-		daysBetween = DAYS.between(firstDate, secondDate);
-		// TODO: Break down number of days into months and years
 		
-		System.out.println("There are " + daysBetween + " days between " + firstDate + " and " + secondDate + ".");
 		
+		yearsBetween = YEARS.between(firstDate, secondDate);
+		monthsBetween = MONTHS.between(firstDate.plusYears(yearsBetween), secondDate);
+		daysBetween = DAYS.between(firstDate.plusYears(yearsBetween).plusMonths(monthsBetween), secondDate);
+		
+		System.out.println("There are " + Math.abs(yearsBetween) + " years, " + Math.abs(monthsBetween) + " months, "
+				+ Math.abs(daysBetween) + " days between the two dates");
 	}
 }
