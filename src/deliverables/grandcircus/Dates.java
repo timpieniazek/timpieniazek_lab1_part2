@@ -24,6 +24,9 @@ public class Dates {
 		long yearsBetween;
 		long monthsBetween;
 		long daysBetween;
+		long yearsAbs;
+		long monthsAbs;
+		long daysAbs;
 		
 		/* App intro block */
 		int i;
@@ -39,7 +42,7 @@ public class Dates {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu", Locale.US)
 				.withResolverStyle(ResolverStyle.STRICT);
 		
-		/* Do-While loop cycles input until entered in the correct format. */
+		/* Do-While loop cycles through input until entered in the correct format. */
 		firstDate = null;
 		do {
 			try {
@@ -68,8 +71,29 @@ public class Dates {
 		monthsBetween = MONTHS.between(firstDate.plusYears(yearsBetween), secondDate);
 		daysBetween = DAYS.between(firstDate.plusYears(yearsBetween).plusMonths(monthsBetween), secondDate);
 		
+		yearsAbs = Math.abs(yearsBetween);
+		monthsAbs = Math.abs(monthsBetween);
+		daysAbs = Math.abs(daysBetween);
+		
 		/* Output the absolute value, simple workaround in case firstDate > secondDate. */
-		System.out.println("There are " + Math.abs(yearsBetween) + " years, " + Math.abs(monthsBetween) + " months, "
-				+ Math.abs(daysBetween) + " days between the two dates.");
+		System.out.printf("There %s %d %s, %d %s, and %d %s between the two dates.",
+				isAre(yearsAbs),
+				yearsAbs, pluralize(yearsAbs, "year"),
+				monthsAbs, pluralize(monthsAbs, "month"),
+				daysAbs, pluralize(daysAbs, "day"));
+	}
+	
+	public static String isAre(long count) {
+		return (count - 1 < 0.001 && count -1 > -0.001 ? "is" : "are");
+	}
+	
+	public static String pluralize(long count, String singular)
+	{
+	   return pluralize(count, singular, singular.concat("s"));
+	}
+
+	public static String pluralize(long count, String singular, String plural)
+	{
+	  return (count - 1 < 0.001 && count - 1 > -0.001 ? singular : plural);
 	}
 }
