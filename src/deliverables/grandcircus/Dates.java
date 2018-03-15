@@ -84,7 +84,7 @@ public class Dates {
 	}
 	
 	public static String isAre(long count) {
-		return (count - 1 < 0.001 && count -1 > -0.001 ? "is" : "are");
+		return (count == 1  ? "is" : "are");
 	}
 	
 	public static String pluralize(long count, String singular)
@@ -94,6 +94,6 @@ public class Dates {
 
 	public static String pluralize(long count, String singular, String plural)
 	{
-	  return (count - 1 < 0.001 && count - 1 > -0.001 ? singular : plural);
+	  return (count == 1  ? singular : plural);
 	}
 }
